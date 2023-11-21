@@ -1,0 +1,5 @@
+- name: Testing
+  hosts: localhost
+  tasks:
+    - ansible.builtin.debug:
+        msg: Testing 123
