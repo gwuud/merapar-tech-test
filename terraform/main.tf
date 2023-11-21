@@ -8,12 +8,6 @@ resource "aws_instance" "main" {
 
   user_data = file("./bootstrap.sh")
 
-  provisioner "remote-exec" {
-    inline = [
-      ""
-    ]
-  }
-
   tags = {
     Name = "${var.project_name}-main"
   }
