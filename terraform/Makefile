@@ -1,6 +1,4 @@
-.PHONY: init fmt plan apply console clean
-
-OUT = tfplan.json
+.PHONY: init fmt validate plan apply console clean
 
 init: providers.tf .terraform.lock.hcl
 	terraform init
@@ -8,14 +6,20 @@ init: providers.tf .terraform.lock.hcl
 fmt: $(find . -depth 1 -name '*.tf' -print)
 	terraform fmt -recursive
 
-plan: $(find . -depth 1 -name '*.tf' -print) .terraform.lock.hcl
-	terraform plan -out=$$OUT
+validate: $(find . -depth 1 -name '*.tf' -print)
+	terraform validate
 
-apply: $(find . -depth 1 -name '*.tf' -print) .terraform.lock.hcl $$OUT
-	terraform apply -auto-approve -out=$$OUT
+plan: $(find . -depth 1 -name '*.tf' -print)
+	terraform plan
+
+apply: $(find . -depth 1 -name '*.tf' -print)
+	terraform apply
+
+destroy: $(find . -depth 1 -name '*.tf' -print)
+	terraform destroy -auto-approve
 
 console: $(find . -depth 1 -name '*.tf' -print)
 	terraform console
 
 clean:
-	rm -rvf $$OUT .terraform
+	rm -rvf .terraform

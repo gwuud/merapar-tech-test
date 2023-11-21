@@ -1,16 +1,24 @@
-variable "project" {
-  type = map(string)
+variable "project_name" {}
+
+variable "ec2_instance_type" {
+  default = "t3.micro"
 }
 
-variable "ec2" {
-  type = map(string)
-}
-
-variable "network" {
-  type = map(string)
-  default = {
-    "port" : 80
-    "protocol" : "http"
-    "allowed_ip" : "0.0.0.0/0"
-  }
+variable "ec2_security_group_rules" {
+  type = list(object({
+    description = string
+    port        = number
+    from_ip     = string
+  }))
+  default = [
+    {
+      description = "Allow HTTP Inbound"
+      port        = 80
+      from_ip     = "95.150.60.49"
+    },
+    {
+      description = "Allow Ansible SSH"
+      port        = 22
+      from_ip     = "95.150.60.49"
+  }]
 }
