@@ -1,4 +1,4 @@
-.PHONY: init plan apply console clean
+.PHONY: init fmt plan apply console clean
 
 OUT = tfplan.json
 
