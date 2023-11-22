@@ -1,0 +1,23 @@
+---
+- name: Deploy Application
+  hosts: localhost
+
+  pre_tasks:
+    - name: Get App PID (If Already Running)
+      ansible.builtin.shell: ps cx | grep app | awk '{print $1}'
+      register: pid
+
+    - name: Kill App (If Already Running)
+      ansible.builtin.shell: "kill -9 {{ pid.stdout }}"
+      when: pid.rc
+
+  tasks:
+    - name: Compile Application
+      make:
+        target: bin/app
+      register: compiler
+
+    - name: Execute Application
+      ansible.builtin.shell: "./bin/app &"
+      when: not compiler.failed
+...
