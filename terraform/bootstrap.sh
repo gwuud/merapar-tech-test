@@ -25,4 +25,4 @@ git clone https://github.com/gwuud/${PROJECT}.git
 # build and run application
 echo -e "\nConfiguring Application..."
 ansible-playbook ${PROJECT}/application/ansible.yml \
-	--inventory localhost --connection=local
+	--inventory-file ${PROJECT}/application/hosts --connection=local
