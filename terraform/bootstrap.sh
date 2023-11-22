@@ -13,7 +13,6 @@ trap 'exit 1' ERR
 
 echo -e '\nInstalling Dependencies...'
 yum update -y
-amazon-linux-extras install ansible2 -y
 yum install -y git
 
 echo -e '\nInstalling Golang...'
