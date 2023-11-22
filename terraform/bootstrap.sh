@@ -15,7 +15,7 @@ rm -rf /usr/local/go && \
 tar -C /usr/local -xzf go${GOVER}.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 
-echo "export PATH=$PATH:/usr/local/go/bin" >.bash_profile
+echo "export PATH=$PATH:/usr/local/go/bin" >>.bash_profile
 
 # get application source (ansible-pull not working for subdirs(?))
 echo -e "\nCloning Repository..."
