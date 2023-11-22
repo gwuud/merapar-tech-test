@@ -1,7 +1,10 @@
-.PHONY: run clean
+.PHONY: clean
 
-bin/app: $(find -depth 1 -name '*.go' -print) go.mod
-	go build -o bin/app .
+bin/server: main.go go.mod
+	GOOS=darwin /usr/local/bin/go build -o bin/app .
+
+bin/server-dist: main.go go.mod
+	GOOS=linux /usr/local/go build -o bin/app .
 
 clean:
 	rm -fvr bin

@@ -2,26 +2,17 @@
 - name: Deploy Application
   hosts: local
 
-  pre_tasks:
-    - name: Get App PID (If Already Running)
-      ansible.builtin.shell: ps cx | grep app | awk '{print $1}'
-      register: pid
-
-    - name: Kill App (If Already Running)
-      ansible.builtin.shell: "kill -9 {{ pid.stdout }}"
-      when: pid.rc
+  vars:
+    exec: bin/server-dist
 
   tasks:
-    - name: Get Latest
-      ansible.builtin.shell: cd ../ && git pull
-
     - name: Compile Application
       make:
         chdir: .
-        target: bin/app
+        target: "{{ exec }}"
       register: compiler
 
     - name: Execute Application
-      ansible.builtin.shell: "./bin/app &"
+      ansible.builtin.shell: "./{{ exec }} &"
       when: not compiler.failed
 ...
