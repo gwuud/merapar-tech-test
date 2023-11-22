@@ -14,6 +14,7 @@
   tasks:
     - name: Compile Application
       make:
+        chdir: .
         target: bin/app
       register: compiler
 

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"text/template"
 )
@@ -21,18 +20,20 @@ func main() {
 
 	err := http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	t, err := template.New("index").Parse(`<h1>The Saved String Is {{ . }}</h1>`)
+	t, err := template.New("index").Parse(`
+	<h1>The Saved String Is {{ . }}</h1>
+	`)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 
 	err = t.Execute(w, dynamicString)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 }
