@@ -10,6 +10,7 @@ yum install -y git
 
 # install go from source (yum is behind brew)
 # from https://go.dev/doc/install
+echo -e "\nInstalling Golang..."
 wget https://go.dev/dl/go${GOVER}.linux-amd64.tar.gz
 rm -rf /usr/local/go && \
 tar -C /usr/local -xzf go${GOVER}.linux-amd64.tar.gz
@@ -24,4 +25,4 @@ git clone https://github.com/gwuud/${PROJECT}.git
 # build and run application
 echo -e "\nConfiguring Application..."
 ansible-playbook ${PROJECT}/application/ansible.yml \
-	--inventory ${PROJECT}/application/hosts
+	--inventory localhost --connection=local
