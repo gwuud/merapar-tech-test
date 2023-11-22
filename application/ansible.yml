@@ -1,6 +1,6 @@
 ---
 - name: Deploy Application
-  hosts: localhost
+  hosts: local
 
   pre_tasks:
     - name: Get App PID (If Already Running)
@@ -12,6 +12,9 @@
       when: pid.rc
 
   tasks:
+    - name: Get Latest
+      ansible.builtin.shell: cd ../ && git pull
+
     - name: Compile Application
       make:
         chdir: .

@@ -38,3 +38,8 @@ resource "aws_security_group" "main" {
 
   }
 }
+
+resource "local_file" "ansible_remote_hosts" {
+  filename = "../application/hosts-remote-exec"
+  content = "[local]\n${aws_instance.main.public_dns}\n"
+}

@@ -12,8 +12,8 @@ variable "ec2_security_group_rules" {
   }))
   default = [
     {
-      description = "Allow HTTP Inbound"
-      port        = 80
+      description = "Allow Custom Inbound"
+      port        = 8080
       from_ip     = "95.150.60.49"
     },
     {
