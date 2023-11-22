@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/xyproto/randomstring"
+	rand "github.com/xyproto/randomstring"
 )
 
 func init() {
@@ -32,7 +32,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 
-	err = t.Execute(w, randomstring.HumanFriendlyString(10))
+	err = t.Execute(w, rand.HumanFriendlyString(10))
 	if err != nil {
 		fmt.Println(err)
 	}
