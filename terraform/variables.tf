@@ -12,12 +12,12 @@ variable "ec2_security_group_rules" {
   }))
   default = [
     {
-      description = "Allow Custom Inbound"
+      description = "Allow 8080/tcp"
       port        = 8080
       from_ip     = "95.150.60.49"
     },
     {
-      description = "Allow Ansible SSH"
+      description = "Allow 22/tcp"
       port        = 22
       from_ip     = "95.150.60.49"
   }]

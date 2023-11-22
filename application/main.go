@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"net/http"
 	"text/template"
+
+	"github.com/xyproto/randomstring"
 )
 
-var dynamicString string = "DYNAMIC"
-
 func init() {
-	fmt.Println("Starting...")
+	fmt.Println("Starting Server...")
 }
 
 func main() {
@@ -26,13 +26,13 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	t, err := template.New("index").Parse(`
-	<h1>The Saved String Is {{ . }}</h1>
+	<h1>The Saved String Is {{ . }}!</h1>
 	`)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	err = t.Execute(w, dynamicString)
+	err = t.Execute(w, randomstring.HumanFriendlyString(10))
 	if err != nil {
 		fmt.Println(err)
 	}
