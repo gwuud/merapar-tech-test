@@ -24,15 +24,13 @@ func main() {
 	}
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
-	t, err := template.New("index").Parse(`
-	<h1>The Saved String Is {{ . }}!</h1>
-	`)
+func index(response http.ResponseWriter, request *http.Request) {
+	t, err := template.New("index").Parse(`<h1>The Saved String Is {{ . }}!</h1>`)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	err = t.Execute(w, rand.HumanFriendlyString(10))
+	err = t.Execute(response, rand.HumanFriendlyString(10))
 	if err != nil {
 		fmt.Println(err)
 	}
