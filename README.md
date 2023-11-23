@@ -1,7 +1,7 @@
 Merapar Tech Test
 =
 
-Challenge
+Brief
 -
 
 *On a cloud platform of your choice provision a service, using Infrastructure as Code, that
