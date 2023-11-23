@@ -1,6 +1,10 @@
-variable "project_name" {}
+variable "project_name" {
+  type = string
+  default = "project"
+}
 
 variable "ec2_instance_type" {
+  type = string
   default = "t3.micro"
 }
 
